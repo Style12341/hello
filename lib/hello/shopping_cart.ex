@@ -8,6 +8,11 @@ defmodule Hello.ShoppingCart do
   alias Hello.Catalog
   alias Hello.ShoppingCart.{Cart, CartItem}
 
+  def prune_cart_items(%Cart{} = cart) do
+    {_, _} = Repo.delete_all(from(i in CartItem, where: i.cart_id == ^cart.id))
+    {:ok, reload_cart(cart)}
+  end
+
   @doc """
   Returns the list of carts.
 

@@ -4,7 +4,7 @@ defmodule HelloWeb.PageController do
   def home(conn, _params) do
     conn
     |> put_flash(:info, "Let's pretend we have an error.")
-    |> redirect(to: ~p"/redirect_test")
+    |> redirect(to: ~p"/products")
   end
 
   def redirect_test(conn, _params) do

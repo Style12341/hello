@@ -48,15 +48,12 @@ defmodule HelloWeb.Router do
     resources "/orders", OrderController, only: [:create, :show]
     get "/cart", CartController, :show
     put "/cart", CartController, :update
-    get "/hello", HelloController, :index
-    get "/hello/:messenger", HelloController, :show
   end
 
-  scope "/api", HelloWeb.Api, as: :api do
+  scope "/api", HelloWeb do
     pipe_through :api
 
-    scope "/v1", V1, as: :v1 do
-    end
+    resources "/urls", UrlController, except: [:new, :edit]
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
